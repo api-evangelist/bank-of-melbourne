@@ -1,0 +1,93 @@
+aid: bank-of-melbourne
+name: Bank of Melbourne
+review:
+  question: Does Bank of Melbourne expose a confirmed, live public CDR Product Reference Data (PRD) API, and does it run a broader third-party developer portal?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  developerPortal: false
+findings:
+  summary: |
+    Bank of Melbourne is a Victorian retail and business banking brand of
+    Westpac Banking Corporation (ASX: WBC), operating under the St.George Bank
+    banking authority within the Westpac Group - not a customer-owned mutual.
+    As an accredited Consumer Data Right (CDR) data holder it exposes a public,
+    unauthenticated Product Reference Data (PRD) API. This was confirmed LIVE:
+    a GET against
+    https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
+    returned HTTP 200 with content-type application/json, an x-v: 5 response
+    header, and a JSON body containing a data.products array of 25 products
+    across categories including TERM_DEPOSITS, CRED_AND_CHRG_CARDS, PERS_LOANS,
+    RESIDENTIAL_MORTGAGES, BUSINESS_LOANS and LEASES. The endpoint advertises the
+    current major CDS versions; a request with x-v: 3 is rejected 406
+    "Unsupported Version" (mirroring sibling brand St.George on the same shared
+    Westpac Group digital-api infrastructure). This is the only public,
+    developer-accessible API surface the bank exposes.
+
+    Bank of Melbourne does NOT run a third-party developer portal.
+    developer.bankofmelbourne.com.au and api.bankofmelbourne.com.au do not
+    resolve (connection failure / HTTP 000). Its only public "open banking"
+    presence is a consumer-facing page at
+    https://www.bankofmelbourne.com.au/online-services/open-banking (HTTP 200)
+    describing how customers share data through Accredited Data Recipients - not
+    a developer onboarding, sandbox, or API-key program. There is no Up-style
+    personal-banking developer API and no other documented public API.
+
+    Authorization model: the public PRD API is unauthenticated by CDR mandate
+    (no API key). All CONSUMER data sharing (accounts, transactions, balances)
+    is gated behind the regulated CDR / Accredited Data Recipient (ADR) model
+    using OAuth2 / OpenID Connect with FAPI-grade security and consumer
+    authentication; those consumer endpoints are not open to arbitrary
+    developers.
+
+    Spec provenance: no Bank of Melbourne-proprietary OpenAPI/Swagger is
+    published. The harvested spec at
+    openapi/bank-of-melbourne-cds-banking-products-openapi.yml is the SHARED DSB
+    Consumer Data Standards "CDR Banking API" contract (OpenAPI 3.0.3, DSB
+    version 1.36.0), harvested verbatim from the official
+    ConsumerDataStandardsAustralia/standards repository and converted from JSON
+    to YAML without content changes. It is the industry-standard contract every
+    Australian ADI implements - NOT a bank-specific document. The public PRD
+    surface within it is /banking/products and /banking/products/{productId}.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1
+      documented: true
+      note: 'Live CDR Product Reference Data API. GET /banking/products confirmed HTTP 200, header x-v: 5, JSON data.products array of 25 products. x-v: 3 rejected 406 Unsupported Version.'
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket, GraphQL, or asynchronous API surface is documented.
+  endpointsConfirmedRest:
+    - GET https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
+    - GET https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products/{productId}
+  authModel:
+    publicPrd: Unauthenticated (CDR PRD mandate - no API key required)
+    consumerData: OAuth2 / OpenID Connect (FAPI) via the CDR Accredited Data Recipient model
+  specProvenance: Shared DSB Consumer Data Standards CDR Banking API (OpenAPI 3.0.3, v1.36.0) - not a Bank of Melbourne-proprietary contract.
+sources:
+  - url: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
+    type: APIReference
+    note: 'Live PRD endpoint. Probed 2026-07-20 - HTTP 200, x-v: 5, data.products array with 25 products. x-v: 3 rejected 406.'
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+    note: Bank of Melbourne consumer-facing Open Banking page (HTTP 200). Describes CDR data sharing via ADRs; no developer/API onboarding.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: APIReference
+    note: DSB Consumer Data Standards - the shared contract the Bank of Melbourne PRD API conforms to.
+  - url: https://github.com/ConsumerDataStandardsAustralia/standards
+    type: OpenAPI
+    note: Source of the harvested DSB CDR Banking API OpenAPI (cds_banking.json, OpenAPI 3.0.3, v1.36.0).
+actions:
+  openapiHarvested: true
+  openapiPath: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+  openapiProvenance: DSB shared CDS standard (not bank-proprietary)
+  developerPortalFound: false
+  reason: |
+    Bank of Melbourne's public API posture is limited to the mandated CDR
+    Product Reference Data API, which was confirmed live on shared Westpac Group
+    infrastructure. No proprietary spec or developer portal exists, so the
+    authoritative DSB CDS Banking standard was harvested verbatim and clearly
+    labelled as the shared standard.

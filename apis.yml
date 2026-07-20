@@ -1,0 +1,70 @@
+aid: bank-of-melbourne
+url: https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/apis.yml
+name: Bank of Melbourne
+kind: company
+description: Bank of Melbourne is a Victorian retail and business banking brand
+  operated by Westpac Banking Corporation (ASX code WBC) as part of the Westpac
+  Group. The original Bank of Melbourne was acquired by Westpac in 1997 and the
+  brand was relaunched in 2011; today it operates under the St.George Bank banking
+  authority within Westpac and is NOT a customer-owned mutual - it is a division
+  of a publicly listed, APRA-regulated authorised deposit-taking institution
+  (ADI). As an accredited Consumer Data Right (CDR) data holder, Bank of Melbourne
+  exposes a public, unauthenticated Product Reference Data (PRD) API that conforms
+  to the Australian Consumer Data Standards, confirmed live on shared Westpac
+  Group infrastructure at digital-api.bankofmelbourne.com.au. Consumer data
+  sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model
+  using OAuth2 / OpenID Connect (FAPI) authorization; the bank does not run a
+  broader third-party developer portal.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Product Reference Data
+- ADI
+- Westpac Group
+created: '2026-07-20'
+modified: '2026-07-20'
+specificationVersion: '0.19'
+apis:
+- aid: bank-of-melbourne:bank-of-melbourne-cdr-product-reference-data-api
+  name: Bank of Melbourne CDR Product Reference Data API
+  tags:
+  - CDR
+  - Open Banking
+  - Product Reference Data
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1
+  properties:
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products
+    type: APIReference
+  - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Public, unauthenticated Consumer Data Right (CDR) Product Reference
+    Data API exposing Bank of Melbourne's banking products (term deposits, credit
+    and charge cards, personal loans, residential mortgages, business loans,
+    leases) in machine-readable form under the Australian Consumer Data Standards.
+    Confirmed live at https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
+    (HTTP 200, x-v 5) returning a data.products array of 25 products; a request
+    with x-v 3 is rejected 406 Unsupported Version. Endpoints - GET /banking/products
+    and GET /banking/products/{productId}.
+common:
+- type: Website
+  url: https://www.bankofmelbourne.com.au/
+- type: Documentation
+  url: https://www.bankofmelbourne.com.au/online-services/open-banking
+- type: TermsOfService
+  url: https://www.bankofmelbourne.com.au/help/terms-conditions
+- type: PrivacyPolicy
+  url: https://www.bankofmelbourne.com.au/privacy/privacy-statement
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
