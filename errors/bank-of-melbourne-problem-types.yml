@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  openapi/bank-of-melbourne-cds-banking-products-openapi.yml + Consumer Data
+  Standards error contract + observed probe (review.yml)
+format: consumer-data-standards
+note: >-
+  The public Get Products / Get Product Detail operations inherit the Consumer
+  Data Standards (CDS) common error model: a top-level errors[] array of objects
+  with code, title, detail, and optional meta. Entries below are the CDS error
+  conditions that apply to the unauthenticated Get Products / Get Product Detail
+  endpoints; the 406 was directly confirmed against Bank of Melbourne's live
+  endpoint.
+envelope:
+  field: errors
+  shape: "{ errors: [ { code, title, detail, meta? } ] }"
+problems:
+  - status: 406
+    name: UnsupportedVersion
+    title: Unsupported Version
+    detail: >-
+      The requested x-v version is not supported by the endpoint. Bank of
+      Melbourne serves x-v 5 for Get Products; x-v 3 returns this error.
+    confirmed: true
+    evidence: 'GET /cds-au/v1/banking/products (x-v: 3) -> 406 UnsupportedVersion (review.yml probe 2026-07-20)'
+    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
+  - status: 400
+    name: InvalidVersion
+    title: Invalid Version
+    detail: >-
+      The x-v (or x-min-v) header is present but not a positive integer, so
+      version negotiation cannot be performed.
+    confirmed: false
+    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
+  - status: 400
+    name: MissingRequiredHeader
+    title: Missing Required Header
+    detail: >-
+      The mandatory x-v header was not supplied on the request.
+    confirmed: false
+    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
+  - status: 400
+    name: InvalidField
+    title: Invalid Field
+    detail: >-
+      A query parameter value is invalid (e.g. an unrecognised product-category
+      or effective value, or a malformed updated-since DateTimeString).
+    confirmed: false
+    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
+  - status: 404
+    name: NotFound
+    title: Resource Not Found
+    detail: >-
+      The productId supplied to Get Product Detail does not correspond to a
+      product offered by the data holder.
+    confirmed: false
+    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#getBankingProductDetail

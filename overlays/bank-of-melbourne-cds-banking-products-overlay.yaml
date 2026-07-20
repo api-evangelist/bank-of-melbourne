@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bank of Melbourne CDR Product Reference Data API
+  version: 1.0.0
+extends: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: bank-of-melbourne
+      x-apievangelist-standard: cdr-consumer-data-standards
+      x-apievangelist-auth: none-public
+      x-apievangelist-confirmed-version: '5'
+      x-apievangelist-notes: >-
+        Community-adapted rendering of the shared DSB Consumer Data Standards CDR
+        Banking contract (v1.36.0). Only the Get Products / Get Product Detail
+        operations are public and unauthenticated; the remaining operations are
+        CDR consumer-data endpoints gated behind the Accredited Data Recipient
+        model. Confirmed live at x-v 5 with 25 product records on shared Westpac
+        Group infrastructure.
+  - target: $.servers
+    update:
+      - url: https://digital-api.bankofmelbourne.com.au/cds-au/v1
+        description: Bank of Melbourne — confirmed live PRD host (Westpac Group)
+  - target: $.paths['/banking/products'].get
+    update:
+      x-apievangelist-tool: list_banking_products
+      x-apievangelist-agent-access: connected-read
+  - target: $.paths['/banking/products/{productId}'].get
+    update:
+      x-apievangelist-tool: get_banking_product_detail
+      x-apievangelist-agent-access: connected-read

@@ -1,0 +1,72 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+summary: >-
+  Cross-cutting request/response semantics for Bank of Melbourne's public CDR
+  Product Reference Data API. This is a read-only, unauthenticated surface
+  conforming to the DSB Consumer Data Standards; conventions below are inherited
+  from the Consumer Data Standards Banking API contract, not
+  Bank of Melbourne-proprietary.
+authentication:
+  style: none
+  detail: >-
+    The public Product Reference Data endpoints require no authentication. No API
+    key, bearer token, or OAuth is used for the /banking/products endpoints.
+  cross_ref: authentication/bank-of-melbourne-authentication.yml
+versioning:
+  style: header
+  header: x-v
+  detail: >-
+    Clients MUST send the x-v request header declaring the endpoint version
+    requested; an optional x-min-v header declares the minimum acceptable
+    version. The data holder echoes the served version in the x-v response
+    header. Bank of Melbourne serves x-v 5 for Get Products; requesting an
+    unsupported version (e.g. x-v 3) yields an HTTP 406 UnsupportedVersion error.
+  cross_ref: lifecycle/bank-of-melbourne-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    - page
+    - page-size
+  defaults:
+    page-size: 25
+  response_fields:
+    links: [self, first, prev, next, last]
+    meta: [totalRecords, totalPages]
+  detail: >-
+    Standard Consumer Data Standards page-number pagination. page selects the
+    1-based page; page-size sets records per page (default 25). Paginated
+    responses carry a LinksPaginated links object and a MetaPaginated meta object
+    with totalRecords and totalPages.
+filtering:
+  params:
+    - effective        # CURRENT | FUTURE | ALL
+    - updated-since     # DateTimeString
+    - brand
+    - product-category  # BankingProductCategory enum
+  detail: >-
+    Get Products supports server-side filtering by product effectivity, last
+    update time, brand, and product category.
+idempotency:
+  supported: false
+  detail: >-
+    The public API exposes only safe GET operations (listBankingProducts,
+    getBankingProductDetail); there is no state-changing operation and therefore
+    no idempotency-key contract. No Idempotency canonical pointer is emitted.
+error_envelope:
+  style: consumer-data-standards
+  detail: >-
+    Errors follow the Consumer Data Standards error payload (a top-level errors[]
+    array of {code, title, detail, meta}), not RFC 9457 application/problem+json.
+    See errors/bank-of-melbourne-problem-types.yml.
+  cross_ref: errors/bank-of-melbourne-problem-types.yml
+rate_limiting:
+  signaling: none-documented
+  detail: >-
+    No rate-limit headers or published quota are documented for the public,
+    unauthenticated PRD surface.
+data_types:
+  detail: >-
+    Field types carry CDS x-cds-type annotations (DateTimeString, AmountString,
+    RateString, URIString, ASCIIString, CurrencyString, PositiveInteger) that
+    constrain string formats beyond base JSON Schema.

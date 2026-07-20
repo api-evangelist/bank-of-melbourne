@@ -1,0 +1,33 @@
+# Bank of Melbourne
+
+> Bank of Melbourne is a Victorian retail and business banking brand operated by Westpac Banking Corporation (ASX: WBC), running under the St.George Bank banking authority within the Westpac Group — not a customer-owned mutual. As an accredited Consumer Data Right (CDR) data holder it exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the DSB Consumer Data Standards. This is the only public API surface; consumer/account data sharing runs through the CDR Accredited Data Recipient consent model, not a public developer portal.
+
+## APIs
+
+- [Bank of Melbourne CDR Product Reference Data API](https://www.bankofmelbourne.com.au/online-services/open-banking): Public, unauthenticated banking product catalogue (rates, fees, features, eligibility) under Australia's CDR. Base URL https://digital-api.bankofmelbourne.com.au/cds-au/v1 ; send header x-v: 5. Two public operations: Get Products (listBankingProducts) and Get Product Detail (getBankingProductDetail). Confirmed live: x-v 5 -> 200, meta.totalRecords 40; x-v 3 -> 406.
+
+## Specs
+
+- [OpenAPI (DSB CDR Banking, v1.36.0)](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/openapi/bank-of-melbourne-cds-banking-products-openapi.yml): Shared DSB Consumer Data Standards CDR Banking contract; only Get Products / Get Product Detail are public and unauthenticated.
+- [OpenAPI Overlay (AE enhancements)](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/overlays/bank-of-melbourne-cds-banking-products-overlay.yaml)
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/authentication/bank-of-melbourne-authentication.yml): unauthenticated public PRD surface.
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/conventions/bank-of-melbourne-conventions.yml): versioning (x-v header), pagination, error envelope.
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/errors/bank-of-melbourne-problem-types.yml): CDS error conditions (406 UnsupportedVersion confirmed).
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/lifecycle/bank-of-melbourne-lifecycle.yml): CDS version negotiation (version 5).
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/conformance/bank-of-melbourne-conformance.yml): Consumer Data Standards conformance.
+- [Data model / ERD](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/data-model/bank-of-melbourne-data-model.yml)
+- [MCP candidate server](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/mcp/bank-of-melbourne-mcp.yml)
+- [Agent Skill: Browse Bank of Melbourne banking products](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/skills/bank-of-melbourne-browse-products.md)
+- [Domain security probe](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/security/bank-of-melbourne-domain-security.yml)
+- [Vulnerability disclosure](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/security/bank-of-melbourne-vulnerability-disclosure.yml)
+
+## Docs
+
+- [Open Banking page](https://www.bankofmelbourne.com.au/online-services/open-banking)
+- [DSB Consumer Data Standards](https://consumerdatastandardsaustralia.github.io/standards/)
+- [Terms & Conditions](https://www.bankofmelbourne.com.au/help/terms-conditions)
+- [Privacy Statement](https://www.bankofmelbourne.com.au/privacy/privacy-statement)
+- [Security Centre](https://www.bankofmelbourne.com.au/online-services/security-centre)

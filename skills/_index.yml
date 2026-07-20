@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+  - file: bank-of-melbourne-browse-products.md
+    name: Browse Bank of Melbourne banking products
+    api: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    operations: [listBankingProducts, getBankingProductDetail]

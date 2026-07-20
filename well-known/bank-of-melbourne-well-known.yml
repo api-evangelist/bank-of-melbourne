@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+note: >-
+  Probed the standard /.well-known/ discovery surface on Bank of Melbourne's
+  website and public PRD API host (2026-07-20). No documents returned 200;
+  recorded for auditability. The website host returns 404 for well-known paths;
+  the digital-api host returns 403 (WAF-blocked) for all well-known paths. The
+  CDR ADR OIDC discovery lives on the accredited-recipient InfoSec host, not the
+  public PRD host, so no openid-configuration is exposed here. No WellKnown
+  canonical pointer is emitted (nothing found).
+hosts:
+  - host: https://www.bankofmelbourne.com.au
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+  - host: https://digital-api.bankofmelbourne.com.au
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /cds-au/v1/.well-known/openid-configuration
+        status: 404

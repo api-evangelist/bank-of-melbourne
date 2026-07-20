@@ -53,10 +53,15 @@ apis:
     and charge cards, personal loans, residential mortgages, business loans,
     leases) in machine-readable form under the Australian Consumer Data Standards.
     Confirmed live at https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
-    (HTTP 200, x-v 5) returning a data.products array of 25 products; a request
-    with x-v 3 is rejected 406 Unsupported Version. Endpoints - GET /banking/products
-    and GET /banking/products/{productId}.
+    (HTTP 200, x-v 5) returning a data.products array (25 per page,
+    meta.totalRecords 40 confirmed 2026-07-20); a request with x-v 3 is rejected
+    406 Unsupported Version. Endpoints - GET /banking/products and
+    GET /banking/products/{productId}.
 common:
+- type: VulnerabilityDisclosure
+  url: security/bank-of-melbourne-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bank-of-melbourne-domain-security.yml
 - type: Website
   url: https://www.bankofmelbourne.com.au/
 - type: Documentation
@@ -65,6 +70,28 @@ common:
   url: https://www.bankofmelbourne.com.au/help/terms-conditions
 - type: PrivacyPolicy
   url: https://www.bankofmelbourne.com.au/privacy/privacy-statement
+- type: Security
+  url: https://www.bankofmelbourne.com.au/online-services/security-centre
+- type: Authentication
+  url: authentication/bank-of-melbourne-authentication.yml
+- type: Conventions
+  url: conventions/bank-of-melbourne-conventions.yml
+- type: ErrorCatalog
+  url: errors/bank-of-melbourne-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/bank-of-melbourne-lifecycle.yml
+- type: Conformance
+  url: conformance/bank-of-melbourne-conformance.yml
+- type: DataModel
+  url: data-model/bank-of-melbourne-data-model.yml
+- type: Overlay
+  url: overlays/bank-of-melbourne-cds-banking-products-overlay.yaml
+- type: MCPServer
+  url: mcp/bank-of-melbourne-mcp.yml
+- type: AgentSkill
+  url: skills/bank-of-melbourne-browse-products.md
+- type: LLMsTxt
+  url: llms/bank-of-melbourne-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

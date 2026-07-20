@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+docs: https://www.bankofmelbourne.com.au/online-services/open-banking
+summary:
+  types: []
+  api_key_in: []
+  oauth2_flows: []
+  note: >-
+    The harvested Bank of Melbourne CDR Banking OpenAPI declares NO
+    securitySchemes and applies NO security requirement to the public Product
+    Reference Data operations. The public PRD surface (listBankingProducts /
+    getBankingProductDetail) is unauthenticated by design under the Australian
+    Consumer Data Standards; the only required header is the mandatory x-v
+    version header.
+schemes: []
+public_access:
+  authenticated: false
+  detail: >-
+    listBankingProducts and getBankingProductDetail are open, unauthenticated
+    GET endpoints served on shared Westpac Group infrastructure at
+    digital-api.bankofmelbourne.com.au.
+consumer_data_sharing:
+  detail: >-
+    Access to consumer/account data beyond product reference data (accounts,
+    balances, transactions, direct debits, scheduled payments, payees) is NOT
+    available through this public API. Although those operations appear in the
+    shared DSB spec, they are gated behind the CDR Accredited Data Recipient
+    (ADR) model, which uses an OAuth 2.0 / OpenID Connect, FAPI-hardened consent
+    flow operated through the CDR ecosystem (accreditation + the CDR Register)
+    rather than a Bank of Melbourne-issued developer credential. That surface is
+    out of scope for this public PRD contract.

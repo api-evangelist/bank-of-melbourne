@@ -1,0 +1,95 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+note: >-
+  Entity-relationship graph derived from the CDS Get Products / Get Product
+  Detail schema $ref graph (DSB Consumer Data Standards v1.36.0). The public
+  domain is a single aggregate root (BankingProduct) with several composed child
+  collections; there are no cross-entity id references (the model is a nested
+  document, not a relational graph), so relationships are all composition
+  (has_one / has_many via embedded arrays). Schema version suffixes reflect the
+  harvested v1.36.0 spec.
+entities:
+  - name: BankingProductV6
+    id_field: productId
+    id_type: ASCIIString
+    description: A banking product openly offered to the market (list view).
+  - name: BankingProductDetailV7
+    extends: BankingProductV6
+    description: Full product detail, adding bundles, features, constraints, eligibility, fees, rates, card art and instalment options.
+  - name: BankingProductBundle
+    description: A named bundle a product participates in, referencing other productIds.
+  - name: BankingProductFeatureV4
+  - name: BankingProductConstraintV3
+  - name: BankingProductEligibilityV2
+  - name: BankingProductFeeV2
+  - name: BankingProductDiscountV2
+  - name: BankingProductDiscountEligibility
+  - name: BankingProductDepositRateV2
+  - name: BankingProductLendingRateV3
+  - name: BankingProductRateTierV4
+  - name: BankingProductRateConditionV2
+  - name: BankingProductCardArt
+  - name: BankingProductAdditionalInformationV2
+relationships:
+  - from: BankingProductDetailV7
+    to: BankingProductBundle
+    kind: has_many
+    via: bundles
+  - from: BankingProductDetailV7
+    to: BankingProductFeatureV4
+    kind: has_many
+    via: features
+  - from: BankingProductDetailV7
+    to: BankingProductConstraintV3
+    kind: has_many
+    via: constraints
+  - from: BankingProductDetailV7
+    to: BankingProductEligibilityV2
+    kind: has_many
+    via: eligibility
+  - from: BankingProductDetailV7
+    to: BankingProductFeeV2
+    kind: has_many
+    via: fees
+  - from: BankingProductDetailV7
+    to: BankingProductDepositRateV2
+    kind: has_many
+    via: depositRates
+  - from: BankingProductDetailV7
+    to: BankingProductLendingRateV3
+    kind: has_many
+    via: lendingRates
+  - from: BankingProductV6
+    to: BankingProductCardArt
+    kind: has_many
+    via: cardArt
+  - from: BankingProductV6
+    to: BankingProductAdditionalInformationV2
+    kind: has_one
+    via: additionalInformation
+  - from: BankingProductFeeV2
+    to: BankingProductDiscountV2
+    kind: has_many
+    via: discounts
+  - from: BankingProductDiscountV2
+    to: BankingProductDiscountEligibility
+    kind: has_many
+    via: eligibility
+  - from: BankingProductDepositRateV2
+    to: BankingProductRateTierV4
+    kind: has_many
+    via: tiers
+  - from: BankingProductLendingRateV3
+    to: BankingProductRateTierV4
+    kind: has_many
+    via: tiers
+  - from: BankingProductRateTierV4
+    to: BankingProductRateConditionV2
+    kind: has_one
+    via: applicabilityConditions
+  - from: BankingProductBundle
+    to: BankingProductV6
+    kind: references
+    via: productIds
+    detail: Soft reference by productId to other products included in the bundle.
