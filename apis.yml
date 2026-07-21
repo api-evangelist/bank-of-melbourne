@@ -176,6 +176,8 @@ apis:
     GET /banking/payees/{payeeId} (payee detail). Hosted under the confirmed CDR
     base https://digital-api.bankofmelbourne.com.au/cds-au/v1.
 common:
+- type: AgenticAccess
+  url: agentic-access/bank-of-melbourne-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/bank-of-melbourne-vulnerability-disclosure.yml
 - type: DomainSecurity
@@ -197,6 +199,8 @@ common:
 - type: ErrorCatalog
   url: errors/bank-of-melbourne-problem-types.yml
 - type: Lifecycle
+  url: lifecycle/bank-of-melbourne-lifecycle.yml
+- type: Deprecation
   url: lifecycle/bank-of-melbourne-lifecycle.yml
 - type: Conformance
   url: conformance/bank-of-melbourne-conformance.yml
