@@ -27,7 +27,7 @@ tags:
 - ADI
 - Westpac Group
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
 - aid: bank-of-melbourne:bank-of-melbourne-cdr-product-reference-data-api
@@ -38,9 +38,10 @@ apis:
   - Product Reference Data
   - Banking
   - Australia
+  - Public
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
-  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products
   properties:
   - url: https://www.bankofmelbourne.com.au/online-services/open-banking
     type: Documentation
@@ -48,7 +49,7 @@ apis:
     type: APIReference
   - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
     type: OpenAPI
-  description: Public, unauthenticated Consumer Data Right (CDR) Product Reference
+  description: PUBLIC, unauthenticated Consumer Data Right (CDR) Product Reference
     Data API exposing Bank of Melbourne's banking products (term deposits, credit
     and charge cards, personal loans, residential mortgages, business loans,
     leases) in machine-readable form under the Australian Consumer Data Standards.
@@ -56,7 +57,124 @@ apis:
     (HTTP 200, x-v 5) returning a data.products array (25 per page,
     meta.totalRecords 40 confirmed 2026-07-20); a request with x-v 3 is rejected
     406 Unsupported Version. Endpoints - GET /banking/products and
-    GET /banking/products/{productId}.
+    GET /banking/products/{productId}. No authorization required.
+- aid: bank-of-melbourne:bank-of-melbourne-cdr-accounts-balances-api
+  name: Bank of Melbourne CDR Accounts & Balances API
+  tags:
+  - CDR
+  - Open Banking
+  - Accounts
+  - Balances
+  - Banking
+  - Australia
+  - Authenticated
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-accounts
+    type: APIReference
+  - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: CONSUMER-AUTHORIZED Consumer Data Right (CDR) Accounts & Balances
+    surface of the shared DSB Banking API that Bank of Melbourne implements as an
+    accredited CDR data holder on shared Westpac Group infrastructure. Access is
+    only available to an Accredited Data Recipient (ADR) after the customer grants
+    consent via the regulated CDR / OAuth2 + OpenID Connect (FAPI) authorization
+    flow - it is NOT publicly callable. Covers GET /banking/accounts (list),
+    GET /banking/accounts/balances (bulk balances), POST /banking/accounts/balances,
+    GET /banking/accounts/{accountId}/balance, and
+    GET /banking/accounts/{accountId} (account detail). Hosted under the confirmed
+    CDR base https://digital-api.bankofmelbourne.com.au/cds-au/v1.
+- aid: bank-of-melbourne:bank-of-melbourne-cdr-transactions-api
+  name: Bank of Melbourne CDR Transactions API
+  tags:
+  - CDR
+  - Open Banking
+  - Transactions
+  - Banking
+  - Australia
+  - Authenticated
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-transactions-for-account
+    type: APIReference
+  - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: CONSUMER-AUTHORIZED Consumer Data Right (CDR) Transactions surface of
+    the shared DSB Banking API implemented by Bank of Melbourne as an accredited CDR
+    data holder. Access requires an Accredited Data Recipient (ADR) acting under an
+    active customer consent obtained through the regulated CDR OAuth2 + OpenID
+    Connect (FAPI) authorization flow - it is NOT publicly callable. Covers
+    GET /banking/accounts/{accountId}/transactions (with filtering/pagination) and
+    GET /banking/accounts/{accountId}/transactions/{transactionId} (transaction
+    detail). Hosted under the confirmed CDR base
+    https://digital-api.bankofmelbourne.com.au/cds-au/v1.
+- aid: bank-of-melbourne:bank-of-melbourne-cdr-direct-debits-scheduled-payments-api
+  name: Bank of Melbourne CDR Direct Debits & Scheduled Payments API
+  tags:
+  - CDR
+  - Open Banking
+  - Direct Debits
+  - Scheduled Payments
+  - Banking
+  - Australia
+  - Authenticated
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking
+  properties:
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-direct-debits-for-account
+    type: APIReference
+  - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: CONSUMER-AUTHORIZED Consumer Data Right (CDR) Direct Debits and
+    Scheduled Payments surface of the shared DSB Banking API implemented by Bank of
+    Melbourne as an accredited CDR data holder. Access requires an Accredited Data
+    Recipient (ADR) operating under an active customer consent obtained through the
+    regulated CDR OAuth2 + OpenID Connect (FAPI) authorization flow - it is NOT
+    publicly callable. Covers GET /banking/accounts/{accountId}/direct-debits,
+    POST /banking/accounts/direct-debits (bulk),
+    GET /banking/accounts/{accountId}/payments/scheduled,
+    POST /banking/payments/scheduled (bulk),
+    GET /banking/accounts/{accountId}/payments/plans and
+    POST /banking/accounts/payments/plans. Hosted under the confirmed CDR base
+    https://digital-api.bankofmelbourne.com.au/cds-au/v1.
+- aid: bank-of-melbourne:bank-of-melbourne-cdr-payees-api
+  name: Bank of Melbourne CDR Payees API
+  tags:
+  - CDR
+  - Open Banking
+  - Payees
+  - Banking
+  - Australia
+  - Authenticated
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bankofmelbourne.com.au/online-services/open-banking
+  baseURL: https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/payees
+  properties:
+  - url: https://www.bankofmelbourne.com.au/online-services/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-payees
+    type: APIReference
+  - url: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: CONSUMER-AUTHORIZED Consumer Data Right (CDR) Payees surface of the
+    shared DSB Banking API implemented by Bank of Melbourne as an accredited CDR
+    data holder. Access requires an Accredited Data Recipient (ADR) acting under an
+    active customer consent obtained through the regulated CDR OAuth2 + OpenID
+    Connect (FAPI) authorization flow - it is NOT publicly callable. Covers
+    GET /banking/payees (list of saved payees) and
+    GET /banking/payees/{payeeId} (payee detail). Hosted under the confirmed CDR
+    base https://digital-api.bankofmelbourne.com.au/cds-au/v1.
 common:
 - type: VulnerabilityDisclosure
   url: security/bank-of-melbourne-vulnerability-disclosure.yml
