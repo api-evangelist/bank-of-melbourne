@@ -15,7 +15,19 @@ description: Bank of Melbourne is a Victorian retail and business banking brand
   sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model
   using OAuth2 / OpenID Connect (FAPI) authorization; the bank does not run a
   broader third-party developer portal.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bank-of-melbourne.png
 tags:
 - Financial
 - Banks
