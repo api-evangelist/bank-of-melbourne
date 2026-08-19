@@ -2,26 +2,26 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/bank-of-melbourne-cds-banking-products-openapi.yml
-note: >-
-  No official hosted or remote MCP server is published by Bank of Melbourne. This
-  is a DERIVED candidate tool list mapping the two public CDR Product Reference
-  Data operations to MCP tools. The endpoints are unauthenticated, which makes
-  them a clean candidate for a read-only MCP surface.
+note: No official hosted or remote MCP server is published by Bank of Melbourne. This is a DERIVED candidate
+  tool list mapping the two public CDR Product Reference Data operations to MCP tools. The endpoints are
+  unauthenticated, which makes them a clean candidate for a read-only MCP surface.
 server:
   name: bank-of-melbourne-cdr-products
   transport: http
   url: null
 tools:
-  - name: list_banking_products
-    description: >-
-      List banking products Bank of Melbourne currently offers to the market.
-      Supports filtering by effectivity, updated-since, brand, and
-      product-category, with page-number pagination. Requires the x-v header
-      (use 5).
-    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
-  - name: get_banking_product_detail
-    description: >-
-      Get full detail for a single product by productId, including fees, deposit
-      and lending rates, features, constraints, eligibility, and bundles.
-      Requires the x-v header (use 5).
-    source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#getBankingProductDetail
+- name: list_banking_products
+  description: List banking products Bank of Melbourne currently offers to the market. Supports filtering
+    by effectivity, updated-since, brand, and product-category, with page-number pagination. Requires
+    the x-v header (use 5).
+  source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#listBankingProducts
+- name: get_banking_product_detail
+  description: Get full detail for a single product by productId, including fees, deposit and lending
+    rates, features, constraints, eligibility, and bundles. Requires the x-v header (use 5).
+  source_operation: openapi/bank-of-melbourne-cds-banking-products-openapi.yml#getBankingProductDetail
+deployment:
+  mode: none
+  verified: derived
+  tools: 2
+  checked: '2026-08-12'
+  source: catalog MCP census
