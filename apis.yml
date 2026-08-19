@@ -40,7 +40,7 @@ tags:
 - Westpac Group
 created: '2026-07-20'
 modified: '2026-07-21'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: bank-of-melbourne:bank-of-melbourne-cdr-product-reference-data-api
   name: Bank of Melbourne CDR Product Reference Data API
