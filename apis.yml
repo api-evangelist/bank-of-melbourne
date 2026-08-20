@@ -75,6 +75,14 @@ apis:
   tags:
   - CDR
   - Open Banking
+  - Account
+  - Balances
+  - Banking
+  - Australia
+  - Authenticated
+  tags_raw:
+  - CDR
+  - Open Banking
   - Accounts
   - Balances
   - Banking
@@ -103,6 +111,13 @@ apis:
 - aid: bank-of-melbourne:bank-of-melbourne-cdr-transactions-api
   name: Bank of Melbourne CDR Transactions API
   tags:
+  - CDR
+  - Open Banking
+  - Transaction
+  - Banking
+  - Australia
+  - Authenticated
+  tags_raw:
   - CDR
   - Open Banking
   - Transactions
