@@ -1,4 +1,4 @@
-# Bank of Melbourne (bank-of-melbourne)
+# Bank of Melbourne
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,62 +64,117 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bank of Melbourne is a Victorian retail and business banking brand operated by Westpac Banking Corporation (ASX: WBC) as part of the Westpac Group. The original Bank of Melbourne was acquired by Westpac in 1997 and the brand was relaunched in 2011; today it operates under the St.George Bank banking authority within Westpac and is not a customer-owned mutual - it is a division of a publicly listed, APRA-regulated authorised deposit-taking institution (ADI). As an accredited Consumer Data Right (CDR) data holder, Bank of Melbourne exposes a public, unauthenticated Product Reference Data (PRD) API that conforms to the Australian Consumer Data Standards.
+Bank of Melbourne is a Victorian retail and business banking brand operated by Westpac Banking Corporation (ASX code WBC) as part of the Westpac Group. The original Bank of Melbourne was acquired by Westpac in 1997 and the brand was relaunched in 2011; today it operates under the St.George Bank banking authority within Westpac and is NOT a customer-owned mutual - it is a division of a publicly listed, APRA-regulated authorised deposit-taking institution (ADI). As an accredited Consumer Data Right (CDR) data holder, Bank of Melbourne exposes a public, unauthenticated Product Reference Data (PRD) API that conforms to the Australian Consumer Data Standards, confirmed live on shared Westpac Group infrastructure at digital-api.bankofmelbourne.com.au. Consumer data sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model using OAuth2 / OpenID Connect (FAPI) authorization; the bank does not run a broader third-party developer portal.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bank-of-melbourne/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Product Reference Data · ADI · Westpac Group
 
-## Tags
+## Bank of Melbourne on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Product Reference Data
-- ADI
-- Westpac Group
+Everything profiled for Bank of Melbourne is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bank-of-melbourne/](https://apis.io/providers/bank-of-melbourne/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Bank of Melbourne CDR Product Reference Data API](https://apis.io/apis/bank-of-melbourne/bank-of-melbourne-cdr-product-reference-data-api/) — PUBLIC, unauthenticated Consumer Data Right (CDR) Product Reference Data API exposing Bank of Melbourne's banking products (term deposits, credit and charge…
+- [Bank of Melbourne CDR Accounts & Balances API](https://apis.io/apis/bank-of-melbourne/bank-of-melbourne-cdr-accounts-balances-api/) — CONSUMER-AUTHORIZED Consumer Data Right (CDR) Accounts & Balances surface of the shared DSB Banking API that Bank of Melbourne implements as an accredited…
+- [Bank of Melbourne CDR Transactions API](https://apis.io/apis/bank-of-melbourne/bank-of-melbourne-cdr-transactions-api/) — CONSUMER-AUTHORIZED Consumer Data Right (CDR) Transactions surface of the shared DSB Banking API implemented by Bank of Melbourne as an accredited CDR data…
+- [Bank of Melbourne CDR Direct Debits & Scheduled Payments API](https://apis.io/apis/bank-of-melbourne/bank-of-melbourne-cdr-direct-debits-scheduled-payments-api/) — CONSUMER-AUTHORIZED Consumer Data Right (CDR) Direct Debits and Scheduled Payments surface of the shared DSB Banking API implemented by Bank of Melbourne as…
+- [Bank of Melbourne CDR Payees API](https://apis.io/apis/bank-of-melbourne/bank-of-melbourne-cdr-payees-api/) — CONSUMER-AUTHORIZED Consumer Data Right (CDR) Payees surface of the shared DSB Banking API implemented by Bank of Melbourne as an accredited CDR data…
 
-## APIs
+### Published properties
 
-### Bank of Melbourne CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public, unauthenticated Consumer Data Right (CDR) Product Reference Data API exposing Bank of Melbourne's banking products (term deposits, credit and charge cards, personal loans, residential mortgages, business loans, leases) in machine-readable form under the Australian Consumer Data Standards. Confirmed live at `https://digital-api.bankofmelbourne.com.au/cds-au/v1/banking/products` (HTTP 200, x-v 5) returning a `data.products` array of 25 products; a request with x-v 3 is rejected 406 Unsupported Version. Endpoints - `GET /banking/products` and `GET /banking/products/{productId}`.
+#### MCP servers (1)
 
-- **Human URL:** [https://www.bankofmelbourne.com.au/online-services/open-banking](https://www.bankofmelbourne.com.au/online-services/open-banking)
-- **Base URL:** `https://digital-api.bankofmelbourne.com.au/cds-au/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bank-of-melbourne-cdr-products](https://apis.io/servers/bank-of-melbourne/bank-of-melbourne-cdr-products/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Australia
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.bankofmelbourne.com.au/online-services/open-banking)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#cdr-banking-api_get-products)
-- [OpenAPI](openapi/bank-of-melbourne-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Bank Of Melbourne Agentic Access](https://apis.io/agentic-access/bank-of-melbourne/bank-of-melbourne-agentic-access/)
 
-## Common Properties
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [CDR Banking API](https://apis.io/collections/bank-of-melbourne/open-bank-of-melbourne-cds-banking-products/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bank Of Melbourne Cds Banking Products Overlay](https://apis.io/overlays/bank-of-melbourne/bank-of-melbourne-cds-banking-products-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bank Of Melbourne Authentication](https://apis.io/security/bank-of-melbourne/bank-of-melbourne-authentication/)
+- [Bank Of Melbourne Domain Security](https://apis.io/security/bank-of-melbourne/bank-of-melbourne-domain-security/)
+- [Bank Of Melbourne Vulnerability Disclosure](https://apis.io/security/bank-of-melbourne/bank-of-melbourne-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.bankofmelbourne.com.au/)
 - [Documentation](https://www.bankofmelbourne.com.au/online-services/open-banking)
-- [Terms Of Service](https://www.bankofmelbourne.com.au/help/terms-conditions)
-- [Privacy Policy](https://www.bankofmelbourne.com.au/privacy/privacy-statement)
+- [Security](https://www.bankofmelbourne.com.au/online-services/security-centre)
+- [Terms of service](https://www.bankofmelbourne.com.au/help/terms-conditions)
+- [Privacy policy](https://www.bankofmelbourne.com.au/privacy/privacy-statement)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.8** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Note on API Posture
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 24.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 21.1 |
 
-Bank of Melbourne does not run a third-party developer portal (`developer.bankofmelbourne.com.au` and `api.bankofmelbourne.com.au` do not resolve). Its only public, developer-accessible API is the mandated CDR Product Reference Data API served on shared Westpac Group infrastructure. Consumer data sharing (accounts, balances, transactions) runs through the regulated CDR / Accredited Data Recipient (ADR) model using OAuth2 / OpenID Connect (FAPI) authorization, and is not open to arbitrary developers. The harvested OpenAPI is the shared DSB Consumer Data Standards "CDR Banking API" contract (OpenAPI 3.0.3, v1.36.0), not a bank-proprietary document.
+**Agent readiness 18.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.9** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bank-of-melbourne/](https://apis.io/providers/bank-of-melbourne/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bank of Melbourne: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bank-of-melbourne/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
